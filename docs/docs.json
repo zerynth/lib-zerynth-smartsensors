@@ -1,0 +1,11 @@
+{
+	"version":"0.3.0",
+	"title":"Smart Sensors Library",
+	"copyright":"Viper Team",
+	"files":[
+		["Sensors","sensors.py"],
+		["Analog Sensors","analogSensors.py"],
+		["Digital Sensors","digitalSensors.py"],
+		["Sensors Pools","sensorPool.py"]
+	]
+}
