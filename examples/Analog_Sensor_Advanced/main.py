@@ -7,8 +7,8 @@
 
 import streams
 # import analogSensors and sensorPool
-from libs.smartsensors import analogSensors
-from libs.smartsensors import sensorPool
+from smartsensors import analogSensors
+from smartsensors import sensorPool
 
 # define a function that takes a sensor object as parameter and prints its last
 # read sample and the current moving average

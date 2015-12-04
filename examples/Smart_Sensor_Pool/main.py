@@ -8,9 +8,9 @@
 import streams
 
 # import analogSensors, digitalSensors and sensorPool modules
-from libs.smartsensors import analogSensors
-from libs.smartsensors import digitalSensors
-from libs.smartsensors import sensorPool   
+from smartsensors import analogSensors
+from smartsensors import digitalSensors
+from smartsensors import sensorPool   
 
 # define two functions that take a sensor object as parameter and print its
 # last read value

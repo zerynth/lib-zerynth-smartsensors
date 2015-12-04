@@ -1,6 +1,6 @@
 import timers
-from libs.smartsensors import analogSensors
-from libs.smartsensors import digitalSensors
+from smartsensors import analogSensors
+from smartsensors import digitalSensors
 
 class SensorPool():
     """

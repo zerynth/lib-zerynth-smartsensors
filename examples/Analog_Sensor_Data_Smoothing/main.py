@@ -8,7 +8,7 @@
 import streams
 
 # import analogSensors module
-from libs.smartsensors import analogSensors
+from smartsensors import analogSensors
 
 # define a function that takes a sensor object as parameter and prints
 # its moving average automatically evaluated

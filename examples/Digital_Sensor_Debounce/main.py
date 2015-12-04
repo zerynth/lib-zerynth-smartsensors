@@ -8,7 +8,7 @@
 import streams 
 
 # import digitalSensors module
-from libs.smartsensors import digitalSensors
+from smartsensors import digitalSensors
 
 # set a state variable to 0
 state = 0
