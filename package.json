@@ -2,7 +2,7 @@
         "author": "dev@viperize.it",
         "description": "Smart Sensors Library",
         "name": "Smart Sensors Library",
-        "fullname":"lib.viper.smartsensors",
+        "fullname":"lib.zerynth.smartsensors",
         "dependencies": {
         }
 }
