@@ -1,7 +1,7 @@
 {
-	"version":"0.3.0",
+	"version":"1.0.0",
 	"title":"Smart Sensors Library",
-	"copyright":"Viper Team",
+	"copyright":"Zerynth Team",
 	"files":[
 		["Sensors","sensors.py"],
 		["Analog Sensors","analogSensors.py"],
