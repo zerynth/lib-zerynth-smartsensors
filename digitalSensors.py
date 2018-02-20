@@ -1,16 +1,19 @@
 """
+.. _digitalSensor
+
 .. module: digitalSensor
 
-This module contains class definitions for digital sensors.
-DigitalSensor class is a subclass of the generic Sensor class and provides a simple
-way to handle sensors sensing quantities that can assume only two different values.
+**********************
+Digital Sensor Library
+**********************
 
-Every DigitalSensor instance inherits the whole set of methods from generic Sensor class
-and it also implements the following methods:
+This module contains class definitions for digital sensors. DigitalSensor class is a subclass of the generic Sensor class and provides a simple way to handle sensors sensing quantities that can assume only two different values.
 
-    * onSequence: see method onSequence_
-    * onRiseAndFall: see method onRiseAndFall_
-    * onFallAndRise: see method onFallAndRise_
+Every DigitalSensor instance inherits the whole set of methods from generic Sensor class and it also implements the following methods:
+
+    * onSequence: see method :ref:`onSequence <onSequence>`
+    * onRiseAndFall: see method :ref:`onRiseAndFall <onRiseAndFall>`
+    * onFallAndRise: see method :ref:`onFallAndRise <onFallAndRise>`
     * onRise: alias for onPinRise on the instance pin
     * onFall: alias for onPinFall on the instance pin
 
@@ -89,6 +92,8 @@ class DigitalSensor(sensors.Sensor):
 
     def onSequence(self,first,times,to_dos,long_fn = None):
         """
+        .. _onSequence:
+
         .. method:: onSequence(first,times,to_dos,long_fn)
         
         Sets functions to be executed in a sequence of pin values changes respecting precise time constraints.
@@ -132,6 +137,8 @@ class DigitalSensor(sensors.Sensor):
 
     def onRiseAndFall(self,min_time,max_time,to_do,long_fn = None):
         """
+        .. _onRiseAndFall:
+
         .. method:: onRiseAndFall(min_time,max_time,to_do,long_fn = None)
         
         Sets *to_do* as the function to be executed when the value of the pin changes from 0 to 1 ( onRise ) and again from 1 to 0 ( andFall ).
@@ -148,6 +155,8 @@ class DigitalSensor(sensors.Sensor):
 
     def onFallAndRise(self,min_time,max_time,todo,long_fn = None):
         """
+        .. _onFallAndRise:
+
         .. method:: onFallAndRise(min_time,max_time,to_do,long_fn = None)
         
         Sets *to_do* as the function to be executed when the value of the pin changes from 1 to 0 ( onFall ) and again from 0 to 1 ( andRise ).

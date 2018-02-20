@@ -1,3 +1,14 @@
+"""
+.. module: poolSensor
+
+*******************
+Pool Sensor Library
+*******************
+
+This module contains class definitions for pool of sensors. SensorPool class takes for its initialization the list of sensors (from Generic Sensor class or Analog/Digital subclasses) Every SensorPool instance redefines the :func:`startSampling` and :func:`stopSampling` functions seen in :ref:`Generic Sensor class <gen_sensors>` for list of sensors instead of single sensor.
+
+    """
+
 import timers
 from smartsensors import analogSensors
 from smartsensors import digitalSensors
@@ -8,9 +19,9 @@ class SensorPool():
     SensorPool class
     ==================
     
-    .. class:: SensorPool()
+    .. class:: SensorPool(sensors)
     
-        This is the class for handling pool of sensors. 
+        This is the class for handling pool of sensors passed as a list. 
 
 
     """

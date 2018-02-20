@@ -7,9 +7,9 @@ Moreover the smartSensors lib allows user to define calibration functions for an
 
 In this example the digitalSensors module is used to monitor a DIO and trigger a function only when a state change longer than 500 millisec is detected. This example is very useful for the design of user interfaces where button are included. In this case it is very common to have false detections due to noise or movements and also to have undesired double detection due to a longer press of the button that could be detected by the software as double click.
 
-This example is very useful for improving the usability of the TOI Shield Touch sensor 
+This example is very useful for improving the usability of the Zerynth Shield Touch sensor 
 
-tags: [digitalSensors, TOI Shield, Touch, Button ]
-groups:[Smart Sensors Library, TOI Shield Driver]  
+tags: [digitalSensors, Zerynth Shield, Touch, Button ]
+groups:[Smart Sensors Library, Zerynth Shield Driver]  
 
 

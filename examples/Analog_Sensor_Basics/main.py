@@ -1,7 +1,7 @@
 ################################################################################
 # Basic Analog Sensor for SmartSensor Lib
 #
-# Created by VIPER Team 2015 CC
+# Created by Zerynth Team 2015 CC
 # Authors: L. Rizzello, G. Baldi,  D. Mazzei
 ###############################################################################
 

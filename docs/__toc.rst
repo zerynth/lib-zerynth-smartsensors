@@ -4,8 +4,8 @@
     .. toctree::
        :maxdepth: 2
 
-       sensors
-       analogSensors
-       digitalSensors
-       sensorPool
+       docs_sensors
+       docs_analogSensors
+       docs_digitalSensors
+       docs_sensorPool
 

@@ -7,7 +7,7 @@ Moreover the smartSensors lib allows user to define calibration functions for an
 In this example the average method is used for smoothing analogical data acquired through the ADC running a moving average filter.
 Note that at program starts the average results "None" because the filter window is not yet completely filled and the library verify it avoiding to results wrong data calculation. This feature is very useful in programs where the sampling and analysis routine is stopped and restarted periodically avoiding wrong calculation due to inconsistent incoming data.
 
-tags: [Smart Sensors Lib, analogSensors, TOI Shield, sensorPool]
-groups:[Smart Sensors Library, TOI Shield Driver]
+tags: [Smart Sensors Lib, analogSensors, Zerynth Shield, sensorPool]
+groups:[Smart Sensors Library, Zerynth Shield Driver]
 
 

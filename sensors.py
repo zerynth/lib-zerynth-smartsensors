@@ -1,15 +1,19 @@
 """
 .. module:: sensors
 
-This module contains class definitions for sensors.
-The Sensor class provides methods for handling generic sensors connected to specific pins of a board.
-It also provides easily accessible attributes for useful parameters automatically evaluated during the acquisition.
+.. _gen_sensors:
+
+**********************
+Generic Sensor Library
+**********************
+
+This module contains class definitions for sensors. The Sensor class provides methods for handling generic sensors connected to specific pins of a device. It also provides easily accessible attributes for useful parameters automatically evaluated during the acquisition.
 
 Every Sensor instance implements the following methods:
 
     * getRaw: reads a raw value from the sensor and returns it
     * setNormFunc: sets a normalization function
-    * getNormalized: read a raw value from the sensor and returns a normalized one
+    * getNormalized: reads a raw value from the sensor and returns a normalized one
     * currentSample: returns last read sample
     * previousSample: returns the last but one read sample
     * doEverySample: appends to a list a function to be executed every time a get function is called
@@ -20,13 +24,13 @@ Every Sensor instance implements the following methods:
     * stopSampling: clears the sampling interval
     * wait: sleeps
     * setObservationWindow: sets the length of the window used to evaluate a set of useful parameters
-    * setSamplingTime: sets the private attribute _samplingTime ( use carefully )
+    * setSamplingTime: sets the private attribute _samplingTime (use carefully)
 
-Every Sensor instance provides the following parameters evaluated in a window of n acquisitions ( both in sampling mode and simple get calls ):
+Every Sensor instance provides the following parameters evaluated in a window of n acquisitions (both in sampling mode and simple get calls):
 
     * currentAverage: moving average for last n samples
-    * currentDerivative: last sample minus penultimate sample, all divided by sampling time in seconds ( only sampling mode )
-    * currentTrend: last sample minus first sample of the window, all divided by sampling time in seconds ( only sampling mode )
+    * currentDerivative: last sample minus penultimate sample, all divided by sampling time in seconds (only sampling mode)
+    * currentTrend: last sample minus first sample of the window, all divided by sampling time in seconds (only sampling mode)
     * minSample: smallest sample of the window
     * maxSample: greatest sample of the window
 
@@ -94,11 +98,12 @@ class Sensor:
         .. method:: setObservationWindow(n)
         
             Sets the length of the window (n) used to evaluate a set of useful parameters.
-            Needed to evaluate those parameters during manual acquisition ( calling getRaw/getNormalized functions ), in sampling mode ( entered by startSampling call ) the length is given as a parameter of startSampling method.
+            Needed to evaluate those parameters during manual acquisition (calling getRaw/getNormalized functions), in sampling mode (entered by startSampling call) the length is given as a parameter of startSampling method.
             
-            **N.B.** self._samplingTime can be found set in:
-                * sampling mode: setObservationWindow should not have been called
-                * get mode: self._samplingTime has been manually set because samplingTime dependent parameters ( like trend and derivatived ) are necessary in a non-sampling mode ( shold be very rare )
+            .. note:: **self._samplingTime** can be found set in:
+                        
+                        * sampling mode: setObservationWindow should not have been called
+                        * get mode: self._samplingTime has been manually set because samplingTime dependent parameters (like trend and derivatived) are necessary in a non-sampling mode (should be very rare)
             
         """
         self._observationWindowN = n
@@ -111,7 +116,7 @@ class Sensor:
         
             Manually sets _samplingTime private attribute. 
 
-            **Use carefully**: setObservationWindow method *N.B.* section
+            .. warning:: **Use carefully** setObservationWindow method
 
             This attribute is automatically set when startSampling method is called.
         
@@ -121,11 +126,13 @@ class Sensor:
 
     def currentSample(self):
         """
+        .. _currentSample:
+
         .. method:: currentSample()
         
             Returns last read sample: stored as the last element of the buffer list.
 
-            The buffer is a list of _observationWindowN elements ) if the window evaluation process is not skipped, as a private attribute otherwise.
+            The buffer is a list of _observationWindowN elements if the window evaluation process is not skipped, as a private attribute otherwise.
         """
         if self.skipEval:
             return self._currentSample
@@ -136,9 +143,9 @@ class Sensor:
         """
         .. method:: previousSample()
         
-            Returns last but one read sample: stored in the buffer list ( see currentSample() )
+            Returns last but one read sample: stored in the buffer list (see :ref:`currentSample <currentSample>`)
             
-            **N.B.** not available if evaluation process is skipped
+            .. note:: Not available if evaluation process is skipped
         """
         return self._sampleBuffer[(self._currentBufferIndex-1) % self._observationWindowN]
 
@@ -220,7 +227,7 @@ class Sensor:
 #             * get_type can be "raw" or "norm" that stand respectively for raw and normalized acquisition.
 #             * pin can be both real pin and a tuple containing a sensor object and a parameter to read.
 #             * _evalParams is called only if skipEval is False and _observationWindowN is set
-#             * _everySampleActions and current object checks are performed ( see doEverySample_, addCheck_ )
+#             * _everySampleActions and current object checks are performed ( see :ref:`doEverySample <doEverySample>`, addCheck_ )
 #               both passing current object to these functions.
 
 #         """
@@ -271,10 +278,13 @@ class Sensor:
     
     def doEverySample(self,to_do):
         """
+        .. _doEverySample:
+
         .. method:: doEverySample(to_do)
 
             Appends a function to the list of those to be executed when _getValue is called.
-            **N.B.** _getValue is called both in sampling and manual acquisition mode.
+            
+            .. note:: **_getValue** is called both in sampling and manual acquisition mode.
             
             Example::
                 
@@ -335,7 +345,7 @@ class Sensor:
                             print("Average is greater than threshold!")
                             print(obj.currentAverage)
             
-                    Returns self to allow a compact code ( see doEverySample_ )
+            Returns self to allow a compact code (see :ref:`doEverySample <doEverySample>`)
             
 
         """
@@ -365,10 +375,10 @@ class Sensor:
                     return obj.scale*(val/100)
 
             It is recommended to use only *static* parameters stored in current object like scale factors.
-            **N.B.** in the object passed, obj.currentSample() returns the last but one read value because
+            .. note:: In the object passed, obj.currentSample() returns the last but one read value because
             the buffer list is updated only after the normalization.
 
-            Returns self to allow a compact code ( see doEverySample_ )
+            Returns self to allow a compact code (see :ref:`doEverySample <doEverySample>`)
         """
         self.normFunc = fn
         return self
@@ -400,11 +410,11 @@ class Sensor:
         .. method:: startSampling(time,observation_window,get_type,time_unit)
 
             Starts reading samples every _samplingTime.
-            Length of _observationWindowN to evaluate window parameters ( see _evalParams_ ), type of
-            acquisition ( see _getValue ) and time_unit characterize the acquisition itself.
+            Length of _observationWindowN to evaluate window parameters, type of
+            acquisition and time_unit characterize the acquisition itself.
             If no observation_window is passed the evaluation of window parameters is skipped.
 
-            Returns self to allow a compact code ( see doEverySample_ )
+            Returns self to allow a compact code (see :ref:`doEverySample <doEverySample>`)
         """
         self._samplingTime = time
         self._samplingGetType = get_type
@@ -429,7 +439,7 @@ class Sensor:
                 * sampling mode: clears timer interval and stops sampling
                 * non sampling mode: resets sampling parameters
             
-            Returns self to allow a compact code ( see doEverySample_ )
+            Returns self to allow a compact code (see :ref:`doEverySample <doEverySample>`)
         """
         if self._samplingTimer:
             self._samplingTimer.clear()
