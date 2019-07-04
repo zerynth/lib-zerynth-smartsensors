@@ -1,0 +1,12 @@
+---
+description: Smart sensor library for easy digital/analogic sensors data acquisition
+fullname: lib.zerynth.smartsensors
+info:
+    chip_manufacturer: '-'
+    chip_name: '-'
+    name: Zerynth Smart Sensor Library
+    type: Utility
+keywords:
+- sensor
+title: Smart Sensor Library
+...
